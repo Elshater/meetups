@@ -2,27 +2,60 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>All Meetups</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{%  static 'meetups/styles/base.css' %}">
-    </head>
-    <body>  
+  <head>
+    <title>All Meetups</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{%  static 'meetups/styles/base.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{%  static 'meetups/styles/all_meetups.css' %}"
+    />
+  </head>
+  <body>
+    <header id="main-header">
+      <nav><a href="/meetups" id="main-logo">Django Meetups</a></nav>
+      <h1>We got great Meetups comming up!</h1>
+      <p>Find the one that best suit your needs!</p>
 
-        <h1>All Meetups!</h1>
+      <main>
+        <section>
+          <h2>Upcomming Meetups</h2>
+          <ol>
+            {% for meetup_item in meetups %}
+            <li class="meetup-item">
+              <article>
+                <div class="meetup-summary">
+                  <div class="meetup-image">
+                    <img src="" alt="" />
+                  </div>
+                  <div class="meetup-details">
+                    <h3>{{ meetup_item.title }}</h3>
+                    <address>{{ meetup_item.location }}</address>
+                  </div>
+                </div>
+            </br>
+                <div class="meetup-actions">
+                  <a href="" class="btn">More Details</a>
+                </div>
+              </article>
+            </li>
+            {% endfor %}
+          </ol>
+        </section>
+      </main>
+    </header>
+    <h1>All Meetups!</h1>
 
-        <p>Hello World!</p>
-        {% if show_meetups %}
+    <p>Hello World!</p>
+    {% if show_meetups %} {% for meetup_item in meetups %}
+    <p>{{ meetup_item.title }}</p>
+    {% endfor %}
+    <h2>{{ meetups.0.title }}</h2>
 
-        {% for meetup_item in meetups  %}
-            <p>{{ meetup_item.title }}</p>
-        {% endfor %}
-            <h2>{{ meetups.0.title }}</h2>
-           
-        {% else %}
-            <h2>No Meetups Found</h2>
-        {% endif %}
-    </body>
+    {% else %}
+    <h2>No Meetups Found</h2>
+    {% endif %}
+  </body>
 </html>
